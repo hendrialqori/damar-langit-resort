@@ -32,9 +32,13 @@ export default function Header() {
                 <img src="resort-icon.png" className="" alt="logo" loading="lazy" width="50px" height="70px" />
                 <ul className="hidden md:flex items-center gap-8 text-sm font-light">
                     <li>HOME</li>
-                    <li>RESTO</li>
-                    <li>ROOM</li>
-                    <li>ADVENTURE</li>
+                    <ExpandableMenu title="RESTO" submenu={["DTP", "PAKIS", "DINING", "KEDAI"]} />
+                    <ExpandableMenu title="ROOM" submenu={
+                        ["CAMPING", "SUPERIOR", "GLAPING", "VILLA KAYU", "GRAND DELUX", "EXECUTIVE SWITE", "2 BEDROOM VILLA", "VILLA LUMBUNG"]
+                    } />
+                    <ExpandableMenu title="ADVENTURE"
+                        submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SYUTING TARGET", "PANAHAN"]}
+                    />
                     <li>MAPS</li>
                     <li>CONTACT US</li>
                 </ul>
@@ -43,7 +47,7 @@ export default function Header() {
                 </button>
             </div>
             <motion.div
-                className="bg-white text-black max-h-screen overflow-auto"
+                className="block md:hidden bg-white text-black max-h-screen overflow-auto"
                 initial={{ height: 0 }}
                 animate={{ height: expandMobileMenu ? "max-content" : 0 }}
 
@@ -71,17 +75,37 @@ export default function Header() {
 }
 
 
-// function ExpandableMenu({ title, submenu }: { title: string; submenu: string[] }) {
-//     const [expand, setExpand] = React.useState(false)
+function ExpandableMenu({ title, submenu }: { title: string; submenu: string[] }) {
+    const [expand, setExpand] = React.useState(false)
 
-//     return (
-//         <div className="">
-//             <button>
-//                 {title}
-//             </button>
-//         </div>
-//     )
-// }
+    return (
+        <div className="relative"
+            onMouseEnter={() => setExpand(true)}
+            onMouseLeave={() => setExpand(false)}
+        >
+            <button className="relative flex justify-center items-center gap-3"
+
+            >
+                <span>{title}</span>
+                <IoIosArrowDown className="text-lg" />
+            </button>
+            <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: expand ? "max-content" : 0 }}
+                className="absolute overflow-hidden translate-y-2 bg-white text-black w-40"
+            >
+                {submenu.map((sub, i) => (
+                    <div key={i} className="text-center text-[0.9rem] font-light border-t border-gray-200 bg-gray-100">
+                        <button className="text-center py-4 text-nowrap">
+                            {sub}
+                        </button>
+                    </div>
+                ))}
+
+            </motion.div>
+        </div>
+    )
+}
 
 // Mobile Menu Item
 function ExpandableMobileMenu({ title, submenu }: { title: string; submenu: string[] }) {
