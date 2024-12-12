@@ -46,7 +46,7 @@ export default function Header() {
                         ["CAMPING", "SUPERIOR", "GLAPING", "VILLA KAYU", "GRAND DELUX", "EXECUTIVE SWITE", "2 BEDROOM VILLA", "VILLA LUMBUNG"]
                     } />
                     <Expandable title="ADVENTURE"
-                        submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SYUTING TARGET", "PANAHAN"]}
+                        submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SHOOT AND ADVENTURE"]}
                     />
                     <li className="cursor-pointer">MAPS</li>
                     <li className="cursor-pointer">CONTACT US</li>
@@ -71,7 +71,7 @@ export default function Header() {
                         onCloseHeader={closeNavbarMobile}
                     />
                     <ExpandableMobile title="ADVENTURE"
-                        submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SYUTING TARGET", "PANAHAN"]}
+                        submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SHOOT AND ADVENTURE"]}
                         onCloseHeader={closeNavbarMobile}
                     />
                     <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
@@ -111,7 +111,7 @@ function Expandable({ title, submenu }: ExpandableProps) {
                     initial={{ height: 0 }}
                     animate={{ height: expand ? "max-content" : 0 }}
                     transition={{ duration: 0.5, bounce: false }}
-                    className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-white text-black w-40"
+                    className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-white text-black w-44"
                 >
                     {submenu.map((sub, i) => {
                         const id = `#${mergeSubName(sub)}`

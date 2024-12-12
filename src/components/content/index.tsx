@@ -1,3 +1,4 @@
+import Adventure from "./adventure";
 import Galleries from "./galleries";
 import Hero from "./hero";
 import Maps from "./maps";
@@ -9,6 +10,7 @@ export default function Content() {
             <Hero />
             <Galleries />
             <Resto />
+            <Adventure />
             <Maps />
         </>
         
