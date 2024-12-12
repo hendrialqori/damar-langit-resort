@@ -65,13 +65,23 @@ export default function Header() {
                         CONTACT US
                     </button>
                 </div>
-            </motion.div>D
+            </motion.div>
         </header>
     )
 }
 
 
+// function ExpandableMenu({ title, submenu }: { title: string; submenu: string[] }) {
+//     const [expand, setExpand] = React.useState(false)
 
+//     return (
+//         <div className="">
+//             <button>
+//                 {title}
+//             </button>
+//         </div>
+//     )
+// }
 
 // Mobile Menu Item
 function ExpandableMobileMenu({ title, submenu }: { title: string; submenu: string[] }) {
@@ -82,7 +92,7 @@ function ExpandableMobileMenu({ title, submenu }: { title: string; submenu: stri
         <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
             <button className="relative text-center py-5 w-full" onClick={() => setExpand((prev) => !prev)}>
                 {title}
-                <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-gray-400"/>
+                <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-gray-400" />
             </button>
             <motion.div
                 className="bg-white text-black overflow-hidden"
