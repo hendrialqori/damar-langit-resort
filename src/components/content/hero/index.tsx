@@ -1,17 +1,7 @@
 import { IoMapSharp } from "react-icons/io5";
+import { scrollInto } from "../../../utils/scroll-into";
 
 export default function Hero() {
-
-    const scrollInto = (target: string) => {
-        return () => {
-            const element = document.querySelector(target)
-            if (!element) {
-                throw new Error("Element not found")
-            }
-            element.scrollIntoView({ behavior: "smooth" })
-        }
-    }
-
     return (
         <section className="min-h-dvh w-full flex justify-center items-center relative"
             style={{ backgroundImage: "url('/resort-bg.webp')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
@@ -26,7 +16,7 @@ export default function Hero() {
                         <span className="text-white font-medium">Resort</span>
                     </h1>
                     <p className="text-white text-center">Explorer Keindahan Alam Di Damar Langit Resort</p>
-                    <button className="rounded-full px-5 py-3 bg-white flex items-center gap-2" onClick={scrollInto("#maps")}>
+                    <button className="rounded-full px-5 py-3 bg-white flex items-center gap-2" onClick={() => scrollInto("#maps")}>
                         <IoMapSharp />
                         <span className="text-sm font-semibold">BUKA MAPS</span>
                     </button>

@@ -17,7 +17,7 @@ export default function Footer() {
         <footer className="bg-[#373a3c]">
             <div className="w-[calc(100%_-_50px)] max-w-7xl mx-auto grid grid-cols-1 md:grid-col-2 xl:grid-cols-4 gap-10 pt-12 pb-16 text-center md:text-left">
                 <div className="space-y-3">
-                    <div className="flex justify-start items-end gap-2">
+                    <div className="flex justify-center md:justify-start items-end gap-2">
                         <h1 className="text-[#f7c552] text-xl font-bold">DAMAR LANGIT</h1>
                         <h1 className="text-white text-lg font-bold">RESORT</h1>
                     </div>
