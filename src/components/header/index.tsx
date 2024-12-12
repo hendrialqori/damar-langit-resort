@@ -1,7 +1,8 @@
 import React from "react"
+import { motion } from "framer-motion"
 import cn from "clsx"
 import { RxHamburgerMenu } from "react-icons/rx";
-import { motion } from "framer-motion"
+import { IoIosArrowDown } from "react-icons/io";
 
 const classShow = "bg-white shadow-md"
 const classHide = "bg-transparent text-white"
@@ -42,26 +43,18 @@ export default function Header() {
                 </button>
             </div>
             <motion.div
-                className="bg-white text-black overflow-hidden"
+                className="bg-white text-black max-h-screen overflow-auto"
                 initial={{ height: 0 }}
                 animate={{ height: expandMobileMenu ? "max-content" : 0 }}
 
             >
-                <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
-                    <button className="text-center py-5">
-                        RESTO
-                    </button>
-                </div>
-                <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
-                    <button className="text-center py-5">
-                        ROOM
-                    </button>
-                </div>
-                <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
-                    <button className="text-center py-5">
-                        ADVENTURE
-                    </button>
-                </div>
+                <ExpandableMobileMenu title="RESTO" submenu={["DTP", "PAKIS", "DINING", "KEDAI"]} />
+                <ExpandableMobileMenu title="ROOM" submenu={
+                    ["CAMPING", "SUPERIOR", "GLAPING", "VILLA KAYU", "GRAND DELUX", "EXECUTIVE SWITE", "2 BEDROOM VILLA", "VILLA LUMBUNG"]
+                } />
+                <ExpandableMobileMenu title="ADVENTURE"
+                    submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SYUTING TARGET", "PANAHAN"]}
+                />
                 <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
                     <button className="text-center py-5">
                         MAPS
@@ -72,7 +65,38 @@ export default function Header() {
                         CONTACT US
                     </button>
                 </div>
-            </motion.div>
+            </motion.div>D
         </header>
+    )
+}
+
+
+
+
+// Mobile Menu Item
+function ExpandableMobileMenu({ title, submenu }: { title: string; submenu: string[] }) {
+
+    const [expand, setExpand] = React.useState(false)
+
+    return (
+        <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
+            <button className="relative text-center py-5 w-full" onClick={() => setExpand((prev) => !prev)}>
+                {title}
+                <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-gray-400"/>
+            </button>
+            <motion.div
+                className="bg-white text-black overflow-hidden"
+                initial={{ height: 0 }}
+                animate={{ height: expand ? "max-content" : 0 }}
+            >
+                {submenu.map((sub, i) => (
+                    <div key={i} className="text-center text-[0.75rem] font-light border-t border-gray-200 bg-gray-100">
+                        <button className="text-center py-4">
+                            {sub}
+                        </button>
+                    </div>
+                ))}
+            </motion.div>
+        </div>
     )
 }
