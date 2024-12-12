@@ -30,8 +30,8 @@ export default function Header() {
         <header className={cn("fixed left-0 right-0 z-10 transition duration-300", showNavbar ? classShow : classHide)}>
             <div className="w-[calc(100%_-_50px)] max-w-7xl mx-auto py-1 flex items-center justify-between" aria-label="content">
                 <img src="resort-icon.png" className="" alt="logo" loading="lazy" width="50px" height="70px" />
-                <ul className="hidden md:flex items-center gap-8 text-sm font-light">
-                    <li>HOME</li>
+                <ul className="hidden md:flex items-start gap-10 text-sm font-light pt-2">
+                    <li className="cursor-pointer">HOME</li>
                     <ExpandableMenu title="RESTO" submenu={["DTP", "PAKIS", "DINING", "KEDAI"]} />
                     <ExpandableMenu title="ROOM" submenu={
                         ["CAMPING", "SUPERIOR", "GLAPING", "VILLA KAYU", "GRAND DELUX", "EXECUTIVE SWITE", "2 BEDROOM VILLA", "VILLA LUMBUNG"]
@@ -39,8 +39,8 @@ export default function Header() {
                     <ExpandableMenu title="ADVENTURE"
                         submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SYUTING TARGET", "PANAHAN"]}
                     />
-                    <li>MAPS</li>
-                    <li>CONTACT US</li>
+                    <li className="cursor-pointer">MAPS</li>
+                    <li className="cursor-pointer">CONTACT US</li>
                 </ul>
                 <button className="block md:hidden bg-[#f7c552] px-3 py-1.5 rounded-md" onClick={() => setExpandMobileMenu((prev) => !prev)}>
                     <RxHamburgerMenu className="text-2xl text-white" />
@@ -83,26 +83,26 @@ function ExpandableMenu({ title, submenu }: { title: string; submenu: string[] }
             onMouseEnter={() => setExpand(true)}
             onMouseLeave={() => setExpand(false)}
         >
-            <button className="relative flex justify-center items-center gap-3"
-
-            >
+            <button className="relative flex justify-center items-center gap-3" >
                 <span>{title}</span>
-                <IoIosArrowDown className="text-lg" />
+                <IoIosArrowDown className={cn("text-lg", expand ? "-rotate-90" : "rotate-0")} />
             </button>
-            <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: expand ? "max-content" : 0 }}
-                className="absolute overflow-hidden translate-y-2 bg-white text-black w-40"
-            >
-                {submenu.map((sub, i) => (
-                    <div key={i} className="text-center text-[0.9rem] font-light border-t border-gray-200 bg-gray-100">
-                        <button className="text-center py-4 text-nowrap">
-                            {sub}
-                        </button>
-                    </div>
-                ))}
-
-            </motion.div>
+            <div className="pt-2">
+                <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: expand ? "max-content" : 0 }}
+                    transition={{ duration: 0.5, bounce: false }}
+                    className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-white text-black w-40"
+                >
+                    {submenu.map((sub, i) => (
+                        <div key={i} className="text-center text-[0.9rem] font-light border-b border-gray-200">
+                            <button className="text-center py-4 text-nowrap">
+                                {sub}
+                            </button>
+                        </div>
+                    ))}
+                </motion.div>
+            </div>
         </div>
     )
 }
