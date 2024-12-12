@@ -43,7 +43,7 @@ export default function Header() {
                     <li className="cursor-pointer">HOME</li>
                     <Expandable title="RESTO" submenu={["DTP", "PAKIS", "DINING", "KEDAI"]} />
                     <Expandable title="ROOM" submenu={
-                        ["CAMPING", "SUPERIOR", "GLAPING", "VILLA KAYU", "GRAND DELUX", "EXECUTIVE SWITE", "2 BEDROOM VILLA", "VILLA LUMBUNG"]
+                        ["CAMPING", "SUPERIOR", "GLAMPING", "VILLA KAYU", "GRAND DELUXE", "EXECUTIVE", "2B VILLA", "VILLA LUMBUNG"]
                     } />
                     <Expandable title="ADVENTURE"
                         submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SHOOT AND ADVENTURE"]}
@@ -67,7 +67,7 @@ export default function Header() {
                         onCloseHeader={closeNavbarMobile}
                     />
                     <ExpandableMobile title="ROOM" submenu={
-                        ["CAMPING", "SUPERIOR", "GLAPING", "VILLA KAYU", "GRAND DELUX", "EXECUTIVE SWITE", "2 BEDROOM VILLA", "VILLA LUMBUNG"]}
+                        ["CAMPING", "SUPERIOR", "GLAMPING", "VILLA KAYU", "GRAND DELUXE", "EXECUTIVE", "2B VILLA", "VILLA LUMBUNG"]}
                         onCloseHeader={closeNavbarMobile}
                     />
                     <ExpandableMobile title="ADVENTURE"
@@ -157,7 +157,7 @@ function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
 
                         setTimeout(() => {
                             onCloseHeader?.()
-                        }, 500)
+                        }, 1000)
                     }
 
                     return (

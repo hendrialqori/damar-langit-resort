@@ -3,6 +3,7 @@ import Galleries from "./galleries";
 import Hero from "./hero";
 import Maps from "./maps";
 import Resto from "./resto";
+import Room from "./room";
 
 export default function Content() {
     return (
@@ -10,6 +11,7 @@ export default function Content() {
             <Hero />
             <Galleries />
             <Resto />
+            <Room />
             <Adventure />
             <Maps />
         </>

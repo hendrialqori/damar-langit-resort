@@ -8,7 +8,7 @@ export default function AMARASPA() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3" aria-label="AMARASPA-gallery">
                 <img src="/ADVENTURE/AMARA SPA/ARABIC/WhatsApp Image 2024-11-20 at 16.15.16.jpeg" alt="AMARASPA-image" loading="lazy" />
                 <img src="/ADVENTURE/AMARA SPA/NATIONAL/Spa Massage DLR fix.jpg" alt="AMARASPA-image" loading="lazy" />
-                <img className="col-span-2" src="/ADVENTURE/AMARA SPA/NATIONAL/DSC05533.jpg" alt="AMARASPA-image" loading="lazy" />
+                <img className="md:col-span-2" src="/ADVENTURE/AMARA SPA/NATIONAL/DSC05533.jpg" alt="AMARASPA-image" loading="lazy" />
             </div>
         </div>
     )
