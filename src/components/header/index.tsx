@@ -1,12 +1,6 @@
 import React from "react"
 import cn from "clsx"
 
-function Menu() {
-
-    const [isShow, setShow] = React.useState(false)
-
-
-}
 
 const classShow = "bg-white shadow-md"
 const classHide = "bg-transparent text-white"
