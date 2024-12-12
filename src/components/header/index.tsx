@@ -57,9 +57,9 @@ export default function Header() {
             </div>
 
             {/* mobile menu */}
-            <div className="h-[calc(100vh_-_80px)] overflow-auto">
+            <div className="max-h-[calc(100vh_-_80px)] overflow-auto">
                 <motion.div
-                    className="block md:hidden bg-white text-black"
+                    className="block md:hidden bg-white text-black overflow-hidden"
                     initial={{ height: 0 }}
                     animate={{ height: expandMobileMenu ? "auto" : 0 }}
                 >
