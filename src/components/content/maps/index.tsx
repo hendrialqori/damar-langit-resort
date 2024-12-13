@@ -5,7 +5,7 @@ import Portal from "../../portal";
 
 const COORDINATE = [
     {
-        name: "HERITAGE",
+        name: "HERRITAGE",
         x: 55,
         y: 380
     },
@@ -14,11 +14,11 @@ const COORDINATE = [
         x: 410,
         y: 84
     },
-    // {
-    //     name: "ADVENTURE & RECREATION",
-    //     x: 350,
-    //     y: 420
-    // },
+    {
+        name: "ADVENTURE & RECREATION",
+        x: 350,
+        y: 420
+    },
     {
         name: "DAMAR WATERFALL",
         x: 510,
@@ -66,24 +66,70 @@ const COORDINATE = [
 
     },
     {
-        name: "DAMAR TEA & PATTISERIE",
+        name: "DTP",
         x: 850,
         y: 515
+    },
+    {
+        name: "PARKING",
+        x: 325,
+        y: 195
+    },
+    {
+        name: "PARKING", //second parking
+        x: 990,
+        y: 550
+    },
+    {
+        name: "KADAKA",
+        x: 950,
+        y: 520
+    },
+    {
+        name: "FRONT OFFICE",
+        x: 915,
+        y: 500
+    },
+    {
+        name: "COTTAGE",
+        x: 723,
+        y: 417
+    },
+    {
+        name: "COTTAGE",
+        x: 793,
+        y: 527
+    },
+    {
+        name: "COTTAGE",
+        x: 743,
+        y: 565
     }
 ]
 
 const IMAGE_ON_MAP = {
-    "AUZORA WATERFALL": "/ON MAP/AUZORA WATERFALL/Booklet DLR 2024_page-0033.jpg",
-    "DAMAR WATERFALL": "/ON MAP/DAMAR WATERFALL/Booklet DLR 2024_page-0031.jpg",
-    "DAMAR LANGIT DINING": "/ON MAP/DAMAR LANGIT DINING/damar-langit-dining.jpg",
-    "DAMAR TEA & PATTISERIE": "/ON MAP/DAMAR TEA & PATTISERIE/damar-tea-pattiserie.jpg",
-    "SWIMINGPOOL": "/ON MAP/SWIMINGPOOL/Booklet DLR 2024_page-0016.jpg",
-    "KEDAI": "/ON MAP/KEDAI/Booklet DLR 2024_page-0028.jpg",
-    "PAKIS": "/ON MAP/PAKIS/Booklet DLR 2024_page-0024.jpg",
-    "GLAMPING": "/ON MAP/GLAMPING/Booklet DLR 2024_page-0007.jpg",
-    "CAMPING": "/ON MAP/CAMPING/Booklet DLR 2024_page-0019.jpg",
-    "VILLA LUMBUNG": "/ON MAP/VILLA LUMBUNG/images (1).jpg",
-    "VILLA KAYU": "/ON MAP/VILLA KAYU/v2.jpg"
+    "ADVENTURE & RECREATION": [
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0035.jpg",
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0036.jpg",
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0037.jpg",
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0038.jpg"
+    ],
+    "AUZORA WATERFALL": ["/ON MAP/AUZORA WATERFALL/Booklet DLR 2024_page-0033.jpg"],
+    "DAMAR WATERFALL": ["/ON MAP/DAMAR WATERFALL/Booklet DLR 2024_page-0031.jpg"],
+    "DAMAR LANGIT DINING": ["/ON MAP/DAMAR LANGIT DINING/damar-langit-dining.jpg"],
+    "DTP": ["/ON MAP/DTP/Booklet DLR 2024_page-0026.jpg"],
+    "HERRITAGE": ["/ON MAP/HERRITAGE/herritage.jpeg"],
+    "SWIMINGPOOL": ["/ON MAP/SWIMINGPOOL/Booklet DLR 2024_page-0016.jpg"],
+    "KEDAI": ["/ON MAP/KEDAI/Booklet DLR 2024_page-0028.jpg"],
+    "PAKIS": ["/ON MAP/PAKIS/Booklet DLR 2024_page-0024.jpg"],
+    "GLAMPING": ["/ON MAP/GLAMPING/Booklet DLR 2024_page-0007.jpg"],
+    "CAMPING": ["/ON MAP/CAMPING/Booklet DLR 2024_page-0019.jpg"],
+    "VILLA LUMBUNG": ["/ON MAP/VILLA LUMBUNG/images (1).jpg"],
+    "VILLA KAYU": ["/ON MAP/VILLA KAYU/v2.jpg"],
+    "PARKING": ["/ON MAP/PARKING/parking.jpg"],
+    "KADAKA": ["/ON MAP/KADAKA/oleh-oleh.jpg"],
+    "FRONT OFFICE": ["/ON MAP/FRONT OFFICE/front-office.jpeg"],
+    "COTTAGE": ["/ON MAP/COTTAGE/cottage.jpg"]
 }
 
 export default function Maps() {
@@ -91,7 +137,6 @@ export default function Maps() {
 
     const [isOpen, setOpen] = React.useState(false)
     const [location, setLocation] = React.useState<string | null>(null)
-
 
     const imageSelected = React.useMemo(() => IMAGE_ON_MAP[location as keyof typeof IMAGE_ON_MAP], [location])
 
@@ -149,7 +194,18 @@ export default function Maps() {
                 </div>
             </section>
             <Portal isOpen={isOpen} onClose={closeModal}>
-                <img src={imageSelected} alt={imageSelected} loading="lazy" />
+                {imageSelected?.length > 1 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {imageSelected && imageSelected.map((image) => (
+                            <img src={image} alt={image} loading="lazy" />
+                        ))}
+                    </div>
+                ) :
+                    imageSelected && imageSelected.map((image) => (
+                        <img src={image} alt={image} loading="lazy" />
+                    ))
+                }
+                { }
             </Portal>
         </React.Fragment>
     )
