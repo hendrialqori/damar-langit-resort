@@ -9,14 +9,14 @@ function Content({ children }: { children: React.ReactNode }) {
 
     return ReactDOM.createPortal(
         <motion.section
-            className="fixed inset-0 center-flex z-50"
+            className="fixed inset-0 flex justify-center items-center z-50"
             initial={{ opacity: 0, top: -30 }}
             animate={{ opacity: 1, top: 0 }}
             exit={{ opacity: 0, top: -30 }}
             transition={{ duration: 0.1 }}
         >
             <div
-                className="z-[2] max-h-screen overflow-y-auto w-full flex justify-center py-5 px-2 lg:px-0"
+                className="z-[2] max-h-screen overflow-y-auto w-full flex justify-center p-2 md:p-16"
                 aria-label="content container">
                 {children}
             </div>
@@ -52,7 +52,7 @@ export default function Portal({ isOpen, onClose, children }: PortalProps) {
         <AnimatePresence>
             <Content>
                 <button className="absolute top-5 right-5" onClick={onClose}>
-                    <IoMdClose className="text-white text-2xl md:text-4xl" />
+                    <IoMdClose className="text-white text-2xl" />
                 </button>
                 {children}
             </Content>
