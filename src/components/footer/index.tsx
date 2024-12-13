@@ -14,7 +14,7 @@ function SocialMedia({ children }: { children: React.ReactNode }) {
 
 export default function Footer() {
     return (
-        <footer className="bg-[#373a3c]">
+        <footer className="relative z-[2] bg-[#373a3c]">
             <div className="w-[calc(100%_-_50px)] max-w-7xl mx-auto grid grid-cols-1 md:grid-col-2 xl:grid-cols-4 gap-10 pt-12 pb-16 text-center md:text-left">
                 <div className="space-y-3">
                     <div className="flex justify-center md:justify-start items-end gap-2">
