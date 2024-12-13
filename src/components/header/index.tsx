@@ -97,11 +97,13 @@ interface ExpandableProps { title: string; submenu: string[], onCloseHeader?: ()
 
 function Expandable({ title, submenu }: ExpandableProps) {
     const navigate = useNavigate()
+
     const [expand, setExpand] = React.useState(false)
 
-    function navigateTo(target: string) {
-        return () => navigate(`/menu/${target}`)
+    function navigateTo(target: string, type: "ARABIC" | "NATIONAL") {
+        return () => navigate(`/menu/${target.toLocaleLowerCase()}/${type.toLocaleLowerCase()}`)
     }
+
 
     return (
         <li className="relative"
@@ -121,12 +123,18 @@ function Expandable({ title, submenu }: ExpandableProps) {
                 >
                     {submenu.map((sub, i) => {
                         return (
-                            <div key={i} className="text-center text-[0.9rem] font-light border-b border-gray-200">
+                            <div key={i} className="relative text-center text-[0.9rem] font-light ">
                                 <button
-                                    className="text-center py-4 text-nowrap size-full"
-                                    onClick={navigateTo(sub.toLocaleLowerCase())}
-                                >
-                                    {sub}
+                                    className="text-center pt-3 text-nowrap size-full">
+                                    <span>{sub}</span>
+                                    <div className="grid grid-cols-2 pt-3">
+                                        <button className="border py-2 text-sm hover:bg-gray-200" onClick={navigateTo(sub, "ARABIC")}>
+                                            ARABIC
+                                        </button>
+                                        <button className="border py-2 text-sm hover:bg-gray-200" onClick={navigateTo(sub, "NATIONAL")}>
+                                            NATIONAL
+                                        </button>
+                                    </div>
                                 </button>
                             </div>
                         )
@@ -142,13 +150,14 @@ function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
     const navigate = useNavigate()
     const [expand, setExpand] = React.useState(false)
 
-    function navigateTo(target: string) {
+    function navigateTo(target: string, type: "ARABIC" | "NATIONAL") {
         return () => {
-            navigate(`/menu/${target}`)
+            navigate(`/menu/${target.toLocaleLowerCase()}/${type.toLocaleLowerCase()}`)
             window.scrollTo(0, 0)
             onCloseHeader?.()
         }
     }
+
     return (
         <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
             <button className="relative text-center py-5 w-full" onClick={() => setExpand((prev) => !prev)}>
@@ -163,12 +172,17 @@ function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
                 {submenu.map((sub, i) => {
                     return (
                         <div key={i} className="text-center text-[0.75rem] font-light border-t border-gray-200 bg-gray-100">
-                            <button
-                                className="text-center py-4 size-full active:bg-gray-200 transition duration-200"
-                                onClick={navigateTo(sub.toLocaleLowerCase())}
-                            >
+                            <button className="text-center py-4 size-full font-normal">
                                 {sub}
                             </button>
+                            <div className="grid grid-cols-2 pt-1">
+                                <button className="border font-light py-3 hover:bg-gray-200" onClick={navigateTo(sub, "ARABIC")}>
+                                    ARABIC
+                                </button>
+                                <button className="border font-light py-3 hover:bg-gray-200" onClick={navigateTo(sub, "NATIONAL")}>
+                                    NATIONAL
+                                </button>
+                            </div>
                         </div>
                     )
                 })}

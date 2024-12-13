@@ -15,7 +15,7 @@ function appRoutes() {
         createRoutesFromElements(
             <Fragment>
                 <Route path="/" element={<Home />} />
-                <Route path="/menu/:submenu" element={<Menu />} />
+                <Route path="/menu/:submenu/:type" element={<Menu />} />
             </Fragment>
         ))
 }
