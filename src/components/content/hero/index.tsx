@@ -4,11 +4,11 @@ import { scrollInto } from "../../../utils/scroll-into";
 export default function Hero() {
     return (
         <section className="min-h-dvh w-full flex justify-center items-center relative"
-            style={{ backgroundImage: "url('/resort-bg.webp')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+            style={{ backgroundImage: "url('/damar-bg.webp')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
         >
             <div className="absolute inset-0 bg-black/40" aria-label="overlay" />
             <div className="relative w-full max-w-[380px] mx-auto flex flex-col justify-center items-center gap-4" >
-                <img src="resort-icon.png" className="invert-[1] brightness-100" loading="lazy" height="250px" width="200px" />
+                {/* <img src="resort-icon.png" className="invert-[1] brightness-100" loading="lazy" height="250px" width="200px" /> */}
                 <div className="flex flex-col justify-center items-center gap-3">
                     <h1 className="font-bold text-3xl space-x-3">
                         <span className="text-[#f89624]">Damar</span>
