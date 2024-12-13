@@ -1,16 +1,12 @@
 import React from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import cn from "clsx"
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
-import { scrollInto } from "../../utils/scroll-into";
 
 const classShow = "bg-white shadow-md"
 const classHide = "bg-transparent text-white"
-
-function mergeSubName(subName: string) {
-    return subName.split(" ").join("")
-}
 
 export default function Header() {
 
@@ -38,9 +34,9 @@ export default function Header() {
     return (
         <header className={cn("fixed left-0 right-0 z-10 transition duration-300", showNavbar ? classShow : classHide)}>
             <div className="w-[calc(100%_-_50px)] max-w-7xl mx-auto py-1 flex items-center justify-between" aria-label="content">
-                <img src="resort-icon.png" className="" alt="logo" loading="lazy" width="50px" height="70px" />
+                <img src="/resort-icon.png" className="" alt="logo" loading="lazy" width="50px" height="70px" />
                 <ul className="hidden md:flex items-start gap-10 text-sm font-light">
-                    <li className="cursor-pointer">HOME</li>
+                    <Link to="/" className="cursor-pointer">HOME</Link>
                     <Expandable title="RESTO" submenu={["DTP", "PAKIS", "DINING", "KEDAI"]} />
                     <Expandable title="ROOM" submenu={
                         ["CAMPING", "SUPERIOR", "GLAMPING", "VILLA KAYU", "GRAND DELUXE", "EXECUTIVE", "2B VILLA", "VILLA LUMBUNG"]
@@ -63,6 +59,11 @@ export default function Header() {
                     initial={{ height: 0 }}
                     animate={{ height: expandMobileMenu ? "auto" : 0 }}
                 >
+                    <Link to="/">
+                        <div className="text-center text-[0.85rem] font-light border-b border-gray-200 py-5">
+                            HOME
+                        </div>
+                    </Link>
                     <ExpandableMobile title="RESTO" submenu={["DTP", "PAKIS", "DINING", "KEDAI"]}
                         onCloseHeader={closeNavbarMobile}
                     />
@@ -95,7 +96,12 @@ export default function Header() {
 interface ExpandableProps { title: string; submenu: string[], onCloseHeader?: () => void }
 
 function Expandable({ title, submenu }: ExpandableProps) {
+    const navigate = useNavigate()
     const [expand, setExpand] = React.useState(false)
+
+    function navigateTo(target: string) {
+        return () => navigate(`/menu/${target}`)
+    }
 
     return (
         <li className="relative"
@@ -114,15 +120,11 @@ function Expandable({ title, submenu }: ExpandableProps) {
                     className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-white text-black w-44"
                 >
                     {submenu.map((sub, i) => {
-                        const id = `#${mergeSubName(sub)}`
-                        function action() {
-                            scrollInto(id)
-                        }
                         return (
                             <div key={i} className="text-center text-[0.9rem] font-light border-b border-gray-200">
                                 <button
                                     className="text-center py-4 text-nowrap size-full"
-                                    onClick={action}
+                                    onClick={navigateTo(sub.toLocaleLowerCase())}
                                 >
                                     {sub}
                                 </button>
@@ -137,8 +139,16 @@ function Expandable({ title, submenu }: ExpandableProps) {
 
 // Mobile Menu Item
 function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
+    const navigate = useNavigate()
     const [expand, setExpand] = React.useState(false)
 
+    function navigateTo(target: string) {
+        return () => {
+            navigate(`/menu/${target}`)
+            window.scrollTo(0, 0)
+            onCloseHeader?.()
+        }
+    }
     return (
         <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
             <button className="relative text-center py-5 w-full" onClick={() => setExpand((prev) => !prev)}>
@@ -151,20 +161,11 @@ function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
                 animate={{ height: expand ? "max-content" : 0 }}
             >
                 {submenu.map((sub, i) => {
-                    const id = `#${mergeSubName(sub)}`
-                    function action() {
-                        scrollInto(id)
-
-                        setTimeout(() => {
-                            onCloseHeader?.()
-                        }, 1000)
-                    }
-
                     return (
                         <div key={i} className="text-center text-[0.75rem] font-light border-t border-gray-200 bg-gray-100">
                             <button
                                 className="text-center py-4 size-full active:bg-gray-200 transition duration-200"
-                                onClick={action}
+                                onClick={navigateTo(sub.toLocaleLowerCase())}
                             >
                                 {sub}
                             </button>
