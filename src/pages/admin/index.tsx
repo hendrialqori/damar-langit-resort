@@ -6,7 +6,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function Admin() {
-    const [expand, setExpand] = React.useState(false)
+    const [expand, setExpand] = React.useState(true)
 
     function toggle() {
         setExpand((prev) => !prev)
