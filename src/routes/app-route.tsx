@@ -9,6 +9,7 @@ import {
 
 import Home from "../pages/home"
 import Menu from "../pages/[menu]"
+import Admin from "../pages/admin"
 
 function appRoutes() {
     return createBrowserRouter(
@@ -16,6 +17,7 @@ function appRoutes() {
             <Fragment>
                 <Route path="/" element={<Home />} />
                 <Route path="/menu/:submenu/:type" element={<Menu />} />
+                <Route path="/admin" element={<Admin />} />
             </Fragment>
         ))
 }
