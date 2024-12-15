@@ -124,7 +124,7 @@ function Expandable({ title, submenu }: ExpandableProps) {
                     {submenu.map((sub, i) => {
                         return (
                             <div key={i} className="relative text-center text-[0.9rem] font-light ">
-                                <button
+                                <div
                                     className="text-center pt-3 text-nowrap size-full">
                                     <span>{sub}</span>
                                     <div className="grid grid-cols-2 pt-3">
@@ -135,7 +135,7 @@ function Expandable({ title, submenu }: ExpandableProps) {
                                             NATIONAL
                                         </button>
                                     </div>
-                                </button>
+                                </div>
                             </div>
                         )
                     })}

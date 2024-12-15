@@ -1,4 +1,4 @@
-export const MENUS = {
+export const IMAGES = {
     "dtp": {
         arabic: ["/RESTO/DTP/ARABIC/MENU DINING ARABIC_page-0022.jpg"],
         national: ["/RESTO/DTP/NATIONAL/image-top-7-tea-house-yogyakarta-rasakan-pengalaman-ngeteh-paling-autentik-b778ba394b1b59e336bb31d0239b1f43.jpg"]
@@ -126,3 +126,14 @@ export const MENUS = {
         ]
     }
 }
+
+export const MENU = ["RESTO", "ROOM", "ADVENTURE"] as const
+
+export const SUBMENU = {
+    "RESTO": ["DTP", "PAKIS", "DINING", "KEDAI"],
+    "ROOM": ["CAMPING", "SUPERIOR", "GLAMPING", "VILLA KAYU", "GRAND DELUXE", "EXECUTIVE", "2B VILLA", "VILLA LUMBUNG"],
+    "ADVENTURE": ["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SHOOT AND ADVENTURE"],
+    undefined: []
+}
+
+export const TYPES = ["ARABIC", "NATIONAL"]

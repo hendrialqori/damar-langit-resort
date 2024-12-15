@@ -4,9 +4,7 @@ import { CgSpinner } from "react-icons/cg";
 import { useUploadImage } from "../../services/menu-service";
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query";
-
-const SUBMENU = ["DTP", "PAKIS", "DINING", "KEDAI"]
-const TYPES = ["ARABIC", "NATIONAL"]
+import { MENU, SUBMENU, TYPES } from "../../constant";
 
 type Form = {
     gambar: FileList;
@@ -18,7 +16,9 @@ type Form = {
 export default function Admin() {
     const queryClient = useQueryClient()
 
-    const { register, handleSubmit: submit, reset } = useForm<Form>()
+    const { register, handleSubmit: submit, reset, watch } = useForm<Form>()
+
+    const submenuImage = SUBMENU[watch("menu") as typeof MENU[number]] ?? []
 
     const upload = useUploadImage()
 
@@ -28,7 +28,7 @@ export default function Admin() {
         formData.append("menu", state.menu)
         formData.append("submenu", state.submenu)
         formData.append("type", state.type)
-        
+
         upload.mutate({ formData }, {
             onSuccess: () => {
                 toast.success("SUCCESS UPLOAD", {
@@ -65,14 +65,16 @@ export default function Admin() {
                         <label htmlFor="menu">Menu*</label>
                         <select id="menu" className="bg-gray-100 px-2 py-3 rounded-lg"  {...register("menu", { required: true })}>
                             <option value="">Pilih Menu</option>
-                            <option value="RESTO">RESTO</option>
+                            {MENU.map((menu, i) => (
+                                <option key={i} value={menu}>{menu}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="submenu">Sub menu*</label>
                         <select id="submenu" className="bg-gray-100 px-2 py-3 rounded-lg" {...register("submenu", { required: true })}>
                             <option value="">Pilih Submenu</option>
-                            {SUBMENU.map((sub, i) => (
+                            {submenuImage?.map((sub, i) => (
                                 <option key={i} value={sub}>{sub}</option>
                             ))}
                         </select>

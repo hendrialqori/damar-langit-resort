@@ -24,7 +24,6 @@ export default function Gallery() {
 
     const gallery = useGetImages(QUERY_STATE)
 
-
     return (
         <SharedLayout>
             <div className="space-y-5">
