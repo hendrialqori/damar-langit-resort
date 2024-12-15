@@ -52,7 +52,7 @@ export default function Portal({ isOpen, onClose, children }: PortalProps) {
         <AnimatePresence>
             <Content>
                 <button className="absolute top-5 right-5" onClick={onClose}>
-                    <IoMdClose className="text-white text-2xl" />
+                    <IoMdClose className="text-white text-xl" />
                 </button>
                 {children}
             </Content>
