@@ -4,15 +4,19 @@ import { useGetImages } from "../../services/menu-service";
 import { Query } from "../../types";
 import { MdOutlineDelete } from "react-icons/md";
 import ModalDeleteImage from "./modules/modal-delete-image";
+import Tab from "./modules/tab";
+import { useSearchParams } from "react-router-dom";
 
-const QUERY_STATE: Query = {
-    menu: "",
-    submenu: "",
-    type: ""
-}
 
 export default function Gallery() {
+    const [params] = useSearchParams()
     const [id, setId] = React.useState<string | null>(null)
+
+    const queryParams: Query = {
+        menu: params.get("tab") ?? "RESTO",
+        submenu: "",
+        type: ""
+    }
 
     function setIdImage(id: string) {
         return () => setId(id)
@@ -22,12 +26,13 @@ export default function Gallery() {
         setId(null)
     }
 
-    const gallery = useGetImages(QUERY_STATE)
+    const gallery = useGetImages(queryParams)
 
     return (
         <SharedLayout>
             <div className="space-y-5">
                 <h1 className="font-semibold text-base md:text-xl">Gallery</h1>
+                <Tab />
                 <div className="overflow-auto w-full" aria-label="table-container">
                     <div role="table" className="text-[0.5rem] md:text-sm font-medium">
                         <div className="grid grid-cols-5 bg-[#185C99] text-white" role="row">
@@ -59,7 +64,7 @@ export default function Gallery() {
                                     <span>{image.submenu}</span>
                                 </div>
                                 <div className="px-2 py-3 grid place-items-center">
-                                    <span>{image.type}</span>
+                                    <span>{image.type.name}</span>
                                 </div>
                                 <button className="flex items-center text-red-500" onClick={setIdImage(image.id.toString())}>
                                     <MdOutlineDelete className="!text-xl" />

@@ -10,8 +10,14 @@ export type Image = {
     cloudUrl: string;
     menu: string;
     submenu: string;
-    type: string;
+    type: TypeSubMenu;
     createdAt: string;
+}
+
+export type TypeSubMenu = {
+    id: number;
+    name: string;
+    createdAt?: string;
 }
 
 export type Success<T> = {

@@ -4,21 +4,28 @@ import { CgSpinner } from "react-icons/cg";
 import { useUploadImage } from "../../services/menu-service";
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query";
-import { MENU, SUBMENU, TYPES } from "../../constant";
+import { MENU, SUBMENU } from "../../constant";
+import SelectType from "./modules/select-type";
+import { TypeSubMenu } from "../../types";
 
 type Form = {
     gambar: FileList;
     menu: string;
     submenu: string;
-    type: string;
+    type: TypeSubMenu;
 }
 
 export default function Admin() {
     const queryClient = useQueryClient()
 
-    const { register, handleSubmit: submit, reset, watch } = useForm<Form>()
+    const { register, handleSubmit: submit, setValue, reset, watch } = useForm<Form>()
 
     const submenuImage = SUBMENU[watch("menu") as typeof MENU[number]] ?? []
+
+    const typeSubmenu = watch("type")
+    function handleChangeTypeSubmenu(value: TypeSubMenu) {
+        setValue("type", value)
+    }
 
     const upload = useUploadImage()
 
@@ -27,7 +34,7 @@ export default function Admin() {
         formData.append("image", state.gambar?.[0] as File)
         formData.append("menu", state.menu)
         formData.append("submenu", state.submenu)
-        formData.append("type", state.type)
+        formData.append("typeSubMenuId", state.type.id.toString())
 
         upload.mutate({ formData }, {
             onSuccess: () => {
@@ -63,7 +70,7 @@ export default function Admin() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="menu">Menu*</label>
-                        <select id="menu" className="bg-gray-100 px-2 py-3 rounded-lg"  {...register("menu", { required: true })}>
+                        <select id="menu" className="text-xs md:text-sm bg-gray-100 px-2 py-3 rounded-lg"  {...register("menu", { required: true })}>
                             <option value="">Pilih Menu</option>
                             {MENU.map((menu, i) => (
                                 <option key={i} value={menu}>{menu}</option>
@@ -72,7 +79,7 @@ export default function Admin() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="submenu">Sub menu*</label>
-                        <select id="submenu" className="bg-gray-100 px-2 py-3 rounded-lg" {...register("submenu", { required: true })}>
+                        <select id="submenu" className="text-xs md:text-sm bg-gray-100 px-2 py-3 rounded-lg" {...register("submenu", { required: true })}>
                             <option value="">Pilih Submenu</option>
                             {submenuImage?.map((sub, i) => (
                                 <option key={i} value={sub}>{sub}</option>
@@ -81,12 +88,10 @@ export default function Admin() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="type">Type*</label>
-                        <select id="type" className="bg-gray-100 px-2 py-3 rounded-lg" {...register("type", { required: true })}>
-                            <option value="">Pilih type</option>
-                            {TYPES.map((type, i) => (
-                                <option key={i} value={type}>{type}</option>
-                            ))}
-                        </select>
+                        <SelectType
+                            value={typeSubmenu?.name || ""}
+                            onChange={handleChangeTypeSubmenu}
+                        />
                     </div>
                     <button
                         type="submit"

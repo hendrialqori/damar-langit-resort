@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import cn from "clsx"
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
+import { useGetTypeSubmenu } from "../../services/typesubmenu-service";
+import { TypeSubMenu } from "../../types";
 
 const classShow = "bg-white shadow-md"
 const classHide = "bg-transparent text-white"
@@ -100,10 +102,11 @@ function Expandable({ title, submenu }: ExpandableProps) {
 
     const [expand, setExpand] = React.useState(false)
 
-    function navigateTo(target: string, type: "ARABIC" | "NATIONAL") {
-        return () => navigate(`/menu/${target.toLocaleLowerCase()}/${type.toLocaleLowerCase()}`)
-    }
+    const typeSubmenu = useGetTypeSubmenu()
 
+    function navigateTo(target: string, type: TypeSubMenu) {
+        return () => navigate(`/${title.toLocaleLowerCase()}/${target.toLocaleLowerCase()}/${type.name.toLocaleLowerCase()}?type_id=${type.id}`)
+    }
 
     return (
         <li className="relative"
@@ -119,7 +122,7 @@ function Expandable({ title, submenu }: ExpandableProps) {
                     initial={{ height: 0 }}
                     animate={{ height: expand ? "max-content" : 0 }}
                     transition={{ duration: 0.5, bounce: false }}
-                    className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-white text-black w-44"
+                    className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-white text-black w-max"
                 >
                     {submenu.map((sub, i) => {
                         return (
@@ -128,12 +131,14 @@ function Expandable({ title, submenu }: ExpandableProps) {
                                     className="text-center pt-3 text-nowrap size-full">
                                     <span>{sub}</span>
                                     <div className="grid grid-cols-2 pt-3">
-                                        <button className="border py-2 text-sm hover:bg-gray-200" onClick={navigateTo(sub, "ARABIC")}>
-                                            ARABIC
-                                        </button>
-                                        <button className="border py-2 text-sm hover:bg-gray-200" onClick={navigateTo(sub, "NATIONAL")}>
-                                            NATIONAL
-                                        </button>
+                                        {typeSubmenu.data?.data.map((type) => (
+                                            <button
+                                                className="border py-2 px-3 text-sm hover:bg-gray-200"
+                                                onClick={navigateTo(sub, type)}
+                                            >
+                                                {type.name}
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -150,9 +155,11 @@ function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
     const navigate = useNavigate()
     const [expand, setExpand] = React.useState(false)
 
-    function navigateTo(target: string, type: "ARABIC" | "NATIONAL") {
+    const typeSubmenu = useGetTypeSubmenu()
+
+    function navigateTo(target: string, type: TypeSubMenu) {
         return () => {
-            navigate(`/menu/${target.toLocaleLowerCase()}/${type.toLocaleLowerCase()}`)
+            navigate(`/${title.toLocaleLowerCase()}/${target.toLocaleLowerCase()}/${type.name.toLocaleLowerCase()}?type_id=${type.id}`)
             window.scrollTo(0, 0)
             onCloseHeader?.()
         }
@@ -176,12 +183,15 @@ function ExpandableMobile({ title, submenu, onCloseHeader }: ExpandableProps) {
                                 {sub}
                             </button>
                             <div className="grid grid-cols-2 pt-1">
-                                <button className="border font-light py-3 hover:bg-gray-200" onClick={navigateTo(sub, "ARABIC")}>
-                                    ARABIC
-                                </button>
-                                <button className="border font-light py-3 hover:bg-gray-200" onClick={navigateTo(sub, "NATIONAL")}>
-                                    NATIONAL
-                                </button>
+                                {typeSubmenu.data?.data.map((type) => (
+                                    <button
+                                        key={type.id}
+                                        className="border font-light py-3 hover:bg-gray-200"
+                                        onClick={navigateTo(sub, type)}
+                                    >
+                                        {type.name}
+                                    </button>
+                                ))}
                             </div>
                         </div>
                     )

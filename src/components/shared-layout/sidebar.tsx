@@ -6,7 +6,6 @@ import { FaRegImages } from "react-icons/fa6";
 import { MdOutlineCloudUpload } from "react-icons/md";
 
 export default function Sidebar() {
-
     const [expand] = React.useState(true)
 
     const [expandSubmenu, setExpandSubmenu] = React.useState(false)

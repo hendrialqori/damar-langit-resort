@@ -1,14 +1,15 @@
-import { FaTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
 import { GrFacebookOption } from "react-icons/gr";
 import { FaGoogle } from "react-icons/fa";
-import { FaRss } from "react-icons/fa";
-import { FaDribbble } from "react-icons/fa";
+import { RiTiktokFill } from "react-icons/ri";
 
-function SocialMedia({ children }: { children: React.ReactNode }) {
+function SocialMedia({ link, children }: { link: string; children: React.ReactNode }) {
     return (
-        <button className="bg-white hover:bg-[#f7c552] transition duration-200 rounded-full size-7 flex justify-center items-center">
-            {children}
-        </button>
+        <a href={link} target="_blank">
+            <div className="bg-white hover:bg-[#f7c552] transition duration-200 rounded-full size-7 flex justify-center items-center">
+                {children}
+            </div>
+        </a>
     )
 }
 
@@ -40,20 +41,17 @@ export default function Footer() {
                 <div className="text-white space-y-5">
                     <h2 className="text-[0.9rem] font-bold">GET SOCIAL WITH US</h2>
                     <div className="flex justify-center md:justify-start gap-2">
-                        <SocialMedia>
-                            <FaTwitter className="text-black text-sm" />
+                        <SocialMedia link="https://www.instagram.com/damarlangitresort/profilecard/?igsh=dDg5NTh1djgybHdp">
+                            <FaInstagram className="text-black text-sm" />
                         </SocialMedia>
-                        <SocialMedia>
+                        <SocialMedia link="https://www.facebook.com/damarlangitresort?mibextid=wwXIfr&mibextid=wwXIfr">
                             <GrFacebookOption className="text-black text-base" />
                         </SocialMedia>
-                        <SocialMedia>
+                        <SocialMedia link="https://www.damarlangit.id/en">
                             <FaGoogle className="text-black text-sm" />
                         </SocialMedia>
-                        <SocialMedia>
-                            <FaRss className="text-black text-sm" />
-                        </SocialMedia>
-                        <SocialMedia>
-                            <FaDribbble className="text-black text-sm" />
+                        <SocialMedia link="https://www.tiktok.com/@damarlangitresort?_t=ZS-8sGEW9YcPv6&_r=1">
+                            <RiTiktokFill className="text-black text-sm" />
                         </SocialMedia>
                     </div>
                 </div>

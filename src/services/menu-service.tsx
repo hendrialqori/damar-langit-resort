@@ -9,7 +9,7 @@ axios.defaults.baseURL = import.meta.env.VITE_API_URL
 export function useGetImages(query: Query) {
 
     const queryParams = new URLSearchParams();
-    queryParams.append("name", query.menu)
+    queryParams.append("menu", query.menu)
     queryParams.append("submenu", query.submenu)
     queryParams.append("type", query.type)
 
