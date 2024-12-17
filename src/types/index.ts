@@ -20,6 +20,14 @@ export type TypeSubMenu = {
     createdAt?: string;
 }
 
+export type Map = {
+    id: number;
+    cloudId: string;
+    cloudUrl: string;
+    location: string;
+    createdAt: string;
+}
+
 export type Success<T> = {
     status: number;
     data: T;

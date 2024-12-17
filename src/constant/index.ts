@@ -137,3 +137,151 @@ export const SUBMENU = {
 }
 
 export const TYPES = ["ARABIC", "NATIONAL"]
+
+export const LOCATIONS = [
+    "ADVENTURE & RECREATION",
+    "AUZORA WATERFALL",
+    "DAMAR WATERFALL",
+    "DAMAR LANGIT DINING",
+    "DTP",
+    "HERRITAGE",
+    "SWIMINGPOOL",
+    "KEDAI",
+    "PAKIS",
+    "GLAMPING",
+    "VILLA LUMBUNG",
+    "VILLA KAYU",
+    "PARKING",
+    "KEDAKA",
+    "FRONT OFFICE",
+    "COTTAGE"
+]
+
+export const IMAGE_ON_MAP = {
+    "ADVENTURE & RECREATION": [
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0035.jpg",
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0036.jpg",
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0037.jpg",
+        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0038.jpg"
+    ],
+    "AUZORA WATERFALL": ["/ON MAP/AUZORA WATERFALL/Booklet DLR 2024_page-0033.jpg"],
+    "DAMAR WATERFALL": ["/ON MAP/DAMAR WATERFALL/Booklet DLR 2024_page-0031.jpg"],
+    "DAMAR LANGIT DINING": ["/ON MAP/DAMAR LANGIT DINING/damar-langit-dining.jpg"],
+    "DTP": ["/ON MAP/DTP/Booklet DLR 2024_page-0026.jpg"],
+    "HERRITAGE": ["/ON MAP/HERRITAGE/herritage.jpeg"],
+    "SWIMINGPOOL": ["/ON MAP/SWIMINGPOOL/Booklet DLR 2024_page-0016.jpg"],
+    "KEDAI": ["/ON MAP/KEDAI/Booklet DLR 2024_page-0028.jpg"],
+    "PAKIS": ["/ON MAP/PAKIS/Booklet DLR 2024_page-0024.jpg"],
+    "GLAMPING": ["/ON MAP/GLAMPING/Booklet DLR 2024_page-0007.jpg"],
+    "CAMPING": ["/ON MAP/CAMPING/Booklet DLR 2024_page-0019.jpg"],
+    "VILLA LUMBUNG": ["/ON MAP/VILLA LUMBUNG/images (1).jpg"],
+    "VILLA KAYU": ["/ON MAP/VILLA KAYU/v2.jpg"],
+    "PARKING": ["/ON MAP/PARKING/parking.jpg"],
+    "KADAKA": ["/ON MAP/KADAKA/oleh-oleh.jpg"],
+    "FRONT OFFICE": ["/ON MAP/FRONT OFFICE/front-office.jpeg"],
+    "COTTAGE": ["/ON MAP/COTTAGE/cottage.jpg"]
+}
+
+export const COORDINATES = [
+    {
+        name: "HERRITAGE",
+        x: 55,
+        y: 380
+    },
+    {
+        name: "AUZORA WATERFALL",
+        x: 410,
+        y: 84
+    },
+    {
+        name: "ADVENTURE & RECREATION",
+        x: 350,
+        y: 420
+    },
+    {
+        name: "DAMAR WATERFALL",
+        x: 510,
+        y: 126
+    },
+    {
+        name: "KEDAI",
+        x: 433,
+        y: 323
+    },
+    {
+        name: "GLAMPING",
+        x: 632,
+        y: 326
+    },
+    {
+        name: "VILLA KAYU",
+        x: 752,
+        y: 340
+    },
+    {
+        name: "VILLA LUMBUNG",
+        x: 330,
+        y: 335
+    },
+    {
+        name: "SWIMINGPOOL",
+        x: 740,
+        y: 480
+    },
+    {
+        name: "CAMPING",
+        x: 397,
+        y: 263
+    },
+    {
+        name: "DAMAR LANGIT DINING",
+        x: 790,
+        y: 421
+    },
+    {
+        name: "PAKIS", // RAJA KOPI,
+        x: 865,
+        y: 455
+
+    },
+    {
+        name: "DTP",
+        x: 850,
+        y: 515
+    },
+    {
+        name: "PARKING",
+        x: 325,
+        y: 195
+    },
+    {
+        name: "PARKING", //second parking
+        x: 990,
+        y: 550
+    },
+    {
+        name: "KADAKA",
+        x: 950,
+        y: 520
+    },
+    {
+        name: "FRONT OFFICE",
+        x: 915,
+        y: 500
+    },
+    {
+        name: "COTTAGE",
+        x: 723,
+        y: 417
+    },
+    {
+        name: "COTTAGE",
+        x: 793,
+        y: 527
+    },
+    {
+        name: "COTTAGE",
+        x: 743,
+        y: 565
+    }
+]

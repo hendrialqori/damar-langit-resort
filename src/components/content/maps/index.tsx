@@ -2,166 +2,40 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaMapPin } from "react-icons/fa6";
 import Portal from "../../portal";
+import { useSearchParams } from "react-router-dom";
+import { useGetMapImage } from "../../../services/map-service";
+import { clsx as cn } from "clsx";
+import { COORDINATES, IMAGE_ON_MAP } from "../../../constant";
 
-const COORDINATE = [
-    {
-        name: "HERRITAGE",
-        x: 55,
-        y: 380
-    },
-    {
-        name: "AUZORA WATERFALL",
-        x: 410,
-        y: 84
-    },
-    {
-        name: "ADVENTURE & RECREATION",
-        x: 350,
-        y: 420
-    },
-    {
-        name: "DAMAR WATERFALL",
-        x: 510,
-        y: 126
-    },
-    {
-        name: "KEDAI",
-        x: 433,
-        y: 323
-    },
-    {
-        name: "GLAMPING",
-        x: 632,
-        y: 326
-    },
-    {
-        name: "VILLA KAYU",
-        x: 752,
-        y: 340
-    },
-    {
-        name: "VILLA LUMBUNG",
-        x: 330,
-        y: 335
-    },
-    {
-        name: "SWIMINGPOOL",
-        x: 740,
-        y: 480
-    },
-    {
-        name: "CAMPING",
-        x: 397,
-        y: 263
-    },
-    {
-        name: "DAMAR LANGIT DINING",
-        x: 790,
-        y: 421
-    },
-    {
-        name: "PAKIS", // RAJA KOPI,
-        x: 865,
-        y: 455
-
-    },
-    {
-        name: "DTP",
-        x: 850,
-        y: 515
-    },
-    {
-        name: "PARKING",
-        x: 325,
-        y: 195
-    },
-    {
-        name: "PARKING", //second parking
-        x: 990,
-        y: 550
-    },
-    {
-        name: "KADAKA",
-        x: 950,
-        y: 520
-    },
-    {
-        name: "FRONT OFFICE",
-        x: 915,
-        y: 500
-    },
-    {
-        name: "COTTAGE",
-        x: 723,
-        y: 417
-    },
-    {
-        name: "COTTAGE",
-        x: 793,
-        y: 527
-    },
-    {
-        name: "COTTAGE",
-        x: 743,
-        y: 565
-    }
-]
-
-const IMAGE_ON_MAP = {
-    "ADVENTURE & RECREATION": [
-        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0035.jpg",
-        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0036.jpg",
-        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0037.jpg",
-        "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0038.jpg"
-    ],
-    "AUZORA WATERFALL": ["/ON MAP/AUZORA WATERFALL/Booklet DLR 2024_page-0033.jpg"],
-    "DAMAR WATERFALL": ["/ON MAP/DAMAR WATERFALL/Booklet DLR 2024_page-0031.jpg"],
-    "DAMAR LANGIT DINING": ["/ON MAP/DAMAR LANGIT DINING/damar-langit-dining.jpg"],
-    "DTP": ["/ON MAP/DTP/Booklet DLR 2024_page-0026.jpg"],
-    "HERRITAGE": ["/ON MAP/HERRITAGE/herritage.jpeg"],
-    "SWIMINGPOOL": ["/ON MAP/SWIMINGPOOL/Booklet DLR 2024_page-0016.jpg"],
-    "KEDAI": ["/ON MAP/KEDAI/Booklet DLR 2024_page-0028.jpg"],
-    "PAKIS": ["/ON MAP/PAKIS/Booklet DLR 2024_page-0024.jpg"],
-    "GLAMPING": ["/ON MAP/GLAMPING/Booklet DLR 2024_page-0007.jpg"],
-    "CAMPING": ["/ON MAP/CAMPING/Booklet DLR 2024_page-0019.jpg"],
-    "VILLA LUMBUNG": ["/ON MAP/VILLA LUMBUNG/images (1).jpg"],
-    "VILLA KAYU": ["/ON MAP/VILLA KAYU/v2.jpg"],
-    "PARKING": ["/ON MAP/PARKING/parking.jpg"],
-    "KADAKA": ["/ON MAP/KADAKA/oleh-oleh.jpg"],
-    "FRONT OFFICE": ["/ON MAP/FRONT OFFICE/front-office.jpeg"],
-    "COTTAGE": ["/ON MAP/COTTAGE/cottage.jpg"]
-}
 
 export default function Maps() {
+    const [queryParams, setQueryParams] = useSearchParams()
+    const location = queryParams.get("location") ?? ""
+
     const imageWrapper = React.useRef<HTMLDivElement | null>(null)
 
     const [isOpen, setOpen] = React.useState(false)
-    const [location, setLocation] = React.useState<string | null>(null)
 
-    const imageSelected = React.useMemo(() => IMAGE_ON_MAP[location as keyof typeof IMAGE_ON_MAP], [location])
+    const imagesClient = React.useMemo(() => IMAGE_ON_MAP[location as keyof typeof IMAGE_ON_MAP], [location])
 
-    // function getCoordinatePointImage(e: React.MouseEvent) {
-    //     const rect = imageWrapper.current?.getBoundingClientRect()
-    //     let x = 0, y = 0
-
-    //     if (rect) {
-    //         x = e.clientX - rect.left;
-    //         y = e.clientY - rect.top;
-    //     }
-
-    //     alert(JSON.stringify({ x, y }))
-    // }
+    const imagesServer = useGetMapImage(location)
 
     function selectPinImage(location: string) {
         return () => {
             setOpen(true)
-            setLocation(location)
+            setQueryParams((prev) => {
+                prev.set("location", location)
+                return prev
+            })
         }
     }
 
     function closeModal() {
         setOpen(false)
-        setLocation(null)
+        setQueryParams((prev) => {
+            prev.delete("location")
+            return prev
+        })
     }
 
     return (
@@ -177,7 +51,7 @@ export default function Maps() {
                         style={{ scale: 1 }}
                     >
                         <img src="/map.png" className="size-full object-cover" loading="lazy" />
-                        {COORDINATE.map(({ name, x: left, y: top }, i) => (
+                        {COORDINATES.map(({ name, x: left, y: top }, i) => (
                             <button
                                 key={i}
                                 className="absolute z-1 bg-black/0 rounded-full size-10"
@@ -189,24 +63,51 @@ export default function Maps() {
                                 </div>
                             </button>
                         ))}
-
                     </motion.div>
                 </div>
             </section>
             <Portal isOpen={isOpen} onClose={closeModal}>
-                {imageSelected?.length > 1 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {imageSelected && imageSelected.map((image) => (
-                            <img src={image} alt={image} loading="lazy" />
-                        ))}
-                    </div>
-                ) :
-                    imageSelected && imageSelected.map((image) => (
-                        <img src={image} alt={image} loading="lazy" />
-                    ))
-                }
-                { }
+                <GridColumn>
+                    {imagesClient?.map((image, i) => (
+                        <Image key={i} src={image} alt={image} />
+                    ))}
+                    {imagesServer.data?.data.map((image) => (
+                        <Image key={image.id} src={image.cloudUrl} alt={image.cloudUrl} />
+                    ))}
+                </GridColumn>
             </Portal>
         </React.Fragment>
     )
 }
+
+function GridColumn(props: { children: React.ReactNode }) {
+    const lenghtChild = React.Children.count(props.children)
+
+    if (!lenghtChild) return <p className="text-white">Gambar tidak tersedia</p>
+
+    return (
+        <div className={cn(
+            "grid gap-3",
+            lenghtChild > 1 ? "grid grid-cols-1 md:grid-cols-2" : ""
+        )}>
+            {props.children}
+        </div>
+    )
+}
+
+function Image(props: { src: string; alt: string }) {
+    return <img {...props} loading="lazy" />
+}
+
+
+// function getCoordinatePointImage(e: React.MouseEvent) {
+//     const rect = imageWrapper.current?.getBoundingClientRect()
+//     let x = 0, y = 0
+
+//     if (rect) {
+//         x = e.clientX - rect.left;
+//         y = e.clientY - rect.top;
+//     }
+
+//     alert(JSON.stringify({ x, y }))
+// }

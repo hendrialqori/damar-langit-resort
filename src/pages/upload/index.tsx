@@ -15,7 +15,7 @@ type Form = {
     type: TypeSubMenu;
 }
 
-export default function Admin() {
+export default function Upload() {
     const queryClient = useQueryClient()
 
     const { register, handleSubmit: submit, setValue, reset, watch } = useForm<Form>()

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { TypeSubMenu } from "../../../types"
 import ModalFormType from "./modal-form-type";
-import { useClickOutside } from "../../../constant/use-clickoutside";
+import { useClickOutside } from "../../../hooks/use-clickoutside";
 import { useGetTypeSubmenu } from "../../../services/typesubmenu-service";
 
 interface Props {
