@@ -5,6 +5,21 @@ import { AxiosError } from "axios";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
+export function useGetMapImageAdmin() {
+    const GET = async ({ signal }: { signal: AbortSignal }) => {
+        const req = await axios.get(`/map/list`, { signal })
+        return req.data
+    }
+
+    return useQuery<Success<TMap[]>, AxiosError<Error>>({
+        queryKey: ["MAP", location],
+        queryFn: ({ signal }) => GET({ signal }),
+        staleTime: 1 * (60 * 1000), // 1 minute,
+        throwOnError: true
+    })
+}
+
+
 export function useGetMapImage(location: string) {
 
     const queryParams = new URLSearchParams();
@@ -20,9 +35,10 @@ export function useGetMapImage(location: string) {
         queryFn: ({ signal }) => GET({ signal }),
         staleTime: 1 * (60 * 1000), // 1 minute,
         throwOnError: true,
-        enabled: Boolean(location)
+        enabled: Boolean(location) 
     })
 }
+
 
 export function useUploadMapmage() {
     type Params = {

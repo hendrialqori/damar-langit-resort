@@ -2,7 +2,7 @@ import React from "react";
 import SharedLayout from "../../components/shared-layout";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSearchParams } from "react-router-dom";
-import { useGetMapImage } from "../../services/map-service";
+import { useGetMapImageAdmin } from "../../services/map-service";
 import ModalDeleteImage from "./modules/modal-delete-image";
 
 export default function MapGallery() {
@@ -17,7 +17,7 @@ export default function MapGallery() {
         setId(null)
     }
 
-    const gallery = useGetMapImage(params.get("location") || "")
+    const gallery = useGetMapImageAdmin()
 
     return (
         <SharedLayout>

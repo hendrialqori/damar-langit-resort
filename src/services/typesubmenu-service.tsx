@@ -3,7 +3,6 @@ import axios from "axios"
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
-
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
 export function useGetTypeSubmenu() {
