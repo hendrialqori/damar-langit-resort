@@ -28,6 +28,13 @@ export type Map = {
     createdAt: string;
 }
 
+export type Promo = {
+    id: number;
+    cloudId: string;
+    cloudUrl: string;
+    createdAt: string;
+}
+
 export type Success<T> = {
     status: number;
     data: T;

@@ -6,6 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { useGetTypeSubmenu } from "../../services/typesubmenu-service";
 import { TypeSubMenu } from "../../types";
+import { scrollInto } from "../../utils/scroll-into";
 
 const classShow = "bg-white shadow-md"
 const classHide = "bg-transparent text-white"
@@ -17,6 +18,11 @@ export default function Header() {
 
     function closeNavbarMobile() {
         setExpandMobileMenu(false)
+    }
+
+    function goToMap() {
+        scrollInto("#maps")
+        setTimeout(() => setExpandMobileMenu(false), 500)
     }
 
     React.useEffect(() => {
@@ -46,8 +52,13 @@ export default function Header() {
                     <Expandable title="ADVENTURE"
                         submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SHOOT AND ADVENTURE"]}
                     />
-                    <li className="cursor-pointer">MAPS</li>
-                    <li className="cursor-pointer">CONTACT US</li>
+                    <li className="cursor-pointer" onClick={goToMap}>MAPS</li>
+                    <Link to="/promo">
+                        <li className="cursor-pointer">PROMO</li>
+                    </Link>
+                    <Link to="/contact-us">
+                        <li className="cursor-pointer">CONTACT US</li>
+                    </Link>
                 </ul>
                 <button className="block md:hidden bg-[#f7c552] px-3 py-1.5 rounded-md" onClick={() => setExpandMobileMenu((prev) => !prev)}>
                     <RxHamburgerMenu className="text-2xl text-white" />
@@ -77,16 +88,27 @@ export default function Header() {
                         submenu={["AUZORA WATERFALL", "DAMAR WATERFALL", "AMARA SPA", "SHOOT AND ADVENTURE"]}
                         onCloseHeader={closeNavbarMobile}
                     />
-                    <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
-                        <button className="text-center py-5">
-                            MAPS
-                        </button>
-                    </div>
-                    <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
-                        <button className="text-center py-5">
-                            CONTACT US
-                        </button>
-                    </div>
+                    <Link to="/" onClick={goToMap}>
+                        <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
+                            <button className="text-center py-5">
+                                MAPS
+                            </button>
+                        </div>
+                    </Link>
+                    <Link to="/promo">
+                        <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
+                            <button className="text-center py-5">
+                                PROMO
+                            </button>
+                        </div>
+                    </Link>
+                    <Link to="/contact-us">
+                        <div className="text-center text-[0.85rem] font-light border-b border-gray-200">
+                            <button className="text-center py-5">
+                                CONTACT US
+                            </button>
+                        </div>
+                    </Link>
                 </motion.div>
             </div>
             {/* end mobile menu */}
@@ -129,7 +151,7 @@ function Expandable({ title, submenu }: ExpandableProps) {
                             <div key={i} className="relative text-center text-[0.9rem] font-light ">
                                 <div
                                     className="text-center pt-3 text-nowrap size-full">
-                                    <span>{sub}</span>
+                                    <span className="px-3">{sub}</span>
                                     <div className="grid grid-cols-2 pt-3">
                                         {typeSubmenu.data?.data.map((type) => (
                                             <button

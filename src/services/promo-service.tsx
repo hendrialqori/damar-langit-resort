@@ -1,59 +1,54 @@
-import type { Image, Query, Success, Error } from "../types";
+import type { Promo, Success, Error } from "../types";
 import axios from "axios"
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
-export function useGetImages(query: Query) {
-
-    const queryParams = new URLSearchParams();
-    queryParams.append("menu", query.menu)
-    queryParams.append("submenu", query.submenu)
-    queryParams.append("type", query.type)
-
+export function useGetPromos() {
     const GET = async ({ signal }: { signal: AbortSignal }) => {
-        const req = await axios.get(`/image/list?${queryParams.toString()}`, { signal })
+        const req = await axios.get(`/promo/list`, { signal })
         return req.data
     }
 
-    return useQuery<Success<Image[]>, AxiosError<Error>>({
-        queryKey: ["IMAGES", query],
+    return useQuery<Success<Promo[]>, AxiosError<Error>>({
+        queryKey: ["PROMO", location],
         queryFn: ({ signal }) => GET({ signal }),
         staleTime: 1 * (60 * 1000), // 1 minute,
         throwOnError: true
     })
 }
 
-export function useUploadImage() {
+
+export function useUploadPromo() {
     type Params = {
         formData: FormData;
     }
 
     const POST = async ({ formData }: Params) => {
-        const req = await axios.post("/image/add", formData, { withCredentials: true })
+        const req = await axios.post("/promo/add", formData, { withCredentials: true })
         return req.data
     }
 
     return useMutation<Success<string>, AxiosError<Error>, Params>({
-        mutationKey: ["UPLOAD/IMAGE"],
+        mutationKey: ["UPLOAD/PROMO/IMAGE"],
         mutationFn: POST
     })
 
 }
 
-export function useDeleteImage() {
+export function useDeletePromo() {
     type Payload = {
         id: string;
     }
 
     const DELETE = async ({ id }: Payload) => {
-        const req = await axios.delete(`/image/remove/${id}`)
+        const req = await axios.delete(`/promo/remove/${id}`)
         return req.data
     }
 
     return useMutation<Success<string>, AxiosError<Error>, Payload>({
-        mutationKey: ["DELETE/IMAGE"],
+        mutationKey: ["DELETE/PROMO/IMAGE"],
         mutationFn: DELETE
     })
 }
