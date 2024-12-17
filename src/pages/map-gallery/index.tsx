@@ -1,12 +1,10 @@
 import React from "react";
 import SharedLayout from "../../components/shared-layout";
 import { MdOutlineDelete } from "react-icons/md";
-import { useSearchParams } from "react-router-dom";
 import { useGetMapImageAdmin } from "../../services/map-service";
 import ModalDeleteImage from "./modules/modal-delete-image";
 
 export default function MapGallery() {
-    const [params] = useSearchParams()
     const [id, setId] = React.useState<string | null>(null)
 
     function setIdImage(id: string) {
