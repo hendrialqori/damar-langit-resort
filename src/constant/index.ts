@@ -139,8 +139,9 @@ export const SUBMENU = {
 export const TYPES = ["ARABIC", "NATIONAL"]
 
 export const LOCATIONS = [
-    "ADVENTURE & RECREATION",
+    "ADVENTURE AND RECREATION",
     "AUZORA WATERFALL",
+    "CAMPING GROUND",
     "DAMAR WATERFALL",
     "DAMAR LANGIT DINING",
     "DTP",
@@ -160,7 +161,7 @@ export const LOCATIONS = [
 ]
 
 export const IMAGE_ON_MAP = {
-    "ADVENTURE & RECREATION": [
+    "ADVENTURE AND RECREATION": [
         "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0035.jpg",
         "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0036.jpg",
         "/ON MAP/SHOOTING&ADVENTURE/Booklet DLR 2024_page-0037.jpg",
@@ -175,7 +176,7 @@ export const IMAGE_ON_MAP = {
     "KEDAI": ["/ON MAP/KEDAI/Booklet DLR 2024_page-0028.jpg"],
     "PAKIS": ["/ON MAP/PAKIS/Booklet DLR 2024_page-0024.jpg"],
     "GLAMPING": ["/ON MAP/GLAMPING/Booklet DLR 2024_page-0007.jpg"],
-    "CAMPING": ["/ON MAP/CAMPING/Booklet DLR 2024_page-0019.jpg"],
+    "CAMPING GROUND": ["/ON MAP/CAMPING/Booklet DLR 2024_page-0019.jpg"],
     "VILLA LUMBUNG": ["/ON MAP/VILLA LUMBUNG/images (1).jpg"],
     "VILLA KAYU": ["/ON MAP/VILLA KAYU/v2.jpg"],
     "PARKING": ["/ON MAP/PARKING/parking.jpg"],
@@ -196,7 +197,7 @@ export const COORDINATES = [
         y: 84
     },
     {
-        name: "ADVENTURE & RECREATION",
+        name: "ADVENTURE AND RECREATION",
         x: 350,
         y: 420
     },
@@ -231,7 +232,7 @@ export const COORDINATES = [
         y: 480
     },
     {
-        name: "CAMPING",
+        name: "CAMPING GROUND",
         x: 397,
         y: 263
     },

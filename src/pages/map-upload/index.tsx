@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query";
 import { LOCATIONS } from "../../constant";
 import { useUploadMapmage } from "../../services/map-service";
+import React from "react";
 
 type Form = {
     gambar: FileList;
@@ -41,6 +42,8 @@ export default function MapUpload() {
         })
     })
 
+    const locationSort = React.useMemo(() => LOCATIONS.sort() ,[LOCATIONS])
+
     return (
         <SharedLayout>
             <div className="space-y-5">
@@ -59,7 +62,7 @@ export default function MapUpload() {
                         <label htmlFor="menu">Lokasi*</label>
                         <select id="menu" className="text-xs md:text-sm bg-gray-100 px-2 py-3 rounded-lg"  {...register("location", { required: true })}>
                             <option value="">Pilih lokasi</option>
-                            {LOCATIONS.map((location, i) => (
+                            {locationSort.map((location, i) => (
                                 <option key={i} value={location}>{location}</option>
                             ))}
                         </select>
