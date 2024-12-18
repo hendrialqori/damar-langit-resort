@@ -34,8 +34,8 @@ export default function Footer() {
                 <div className="text-white space-y-5">
                     <h2 className="text-[0.9rem] font-bold">MORE INFO</h2>
                     <div className="space-y-1">
-                        <p className="text-[0.9rem]">Phone: <span className="font-light">040-040-0440</span></p>
-                        <p className="text-[0.9rem]">Phone: <span className="font-light">040-040-0440</span></p>
+                        <p className="text-[0.9rem]">Phone: <span className="font-light">+62 251 8260424</span></p>
+                        <p className="text-[0.9rem]">WhatsApp: <span className="font-light">+62 857-1067-0509</span></p>
                     </div>
                 </div>
                 <div className="text-white space-y-5">

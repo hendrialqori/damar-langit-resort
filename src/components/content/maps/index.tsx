@@ -5,7 +5,7 @@ import Portal from "../../portal";
 import { useSearchParams } from "react-router-dom";
 import { useGetMapImage } from "../../../services/map-service";
 import { clsx as cn } from "clsx";
-import { COORDINATES, IMAGE_ON_MAP } from "../../../constant";
+import { COORDINATES } from "../../../constant";
 
 
 export default function Maps() {
@@ -16,7 +16,7 @@ export default function Maps() {
 
     const [isOpen, setOpen] = React.useState(false)
 
-    const imagesClient = React.useMemo(() => IMAGE_ON_MAP[location as keyof typeof IMAGE_ON_MAP], [location])
+    // const imagesClient = React.useMemo(() => IMAGE_ON_MAP[location as keyof typeof IMAGE_ON_MAP], [location])
 
     const imagesServer = useGetMapImage(location)
 
@@ -68,9 +68,9 @@ export default function Maps() {
             </section>
             <Portal isOpen={isOpen} onClose={closeModal}>
                 <GridColumn>
-                    {imagesClient?.map((image, i) => (
+                    {/* {imagesClient?.map((image, i) => (
                         <Image key={i} src={image} alt={image} />
-                    ))}
+                    ))} */}
                     {imagesServer.data?.data.map((image) => (
                         <Image key={image.id} src={image.cloudUrl} alt={image.cloudUrl} />
                     ))}
