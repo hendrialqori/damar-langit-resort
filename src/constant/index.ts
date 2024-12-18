@@ -154,7 +154,9 @@ export const LOCATIONS = [
     "PARKING",
     "KEDAKA",
     "FRONT OFFICE",
-    "COTTAGE"
+    "MEETING ROOM",
+    "VILLA TENGAH",
+    "VILLA 2BR"
 ]
 
 export const IMAGE_ON_MAP = {
@@ -270,17 +272,17 @@ export const COORDINATES = [
         y: 500
     },
     {
-        name: "COTTAGE",
+        name: "VILLA 2BR",
         x: 723,
         y: 417
     },
     {
-        name: "COTTAGE",
+        name: "MEETING ROOM",
         x: 793,
         y: 527
     },
     {
-        name: "COTTAGE",
+        name: "VILLA TENGAH",
         x: 743,
         y: 565
     }
