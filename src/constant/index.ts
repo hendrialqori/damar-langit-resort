@@ -153,6 +153,7 @@ export const LOCATIONS = [
     "VILLA LUMBUNG",
     "VILLA KAYU",
     "PARKING",
+    "PARKING 2",
     "KEDAKA",
     "FRONT OFFICE",
     "MEETING ROOM",
@@ -253,12 +254,12 @@ export const COORDINATES = [
         y: 515
     },
     {
-        name: "PARKING",
+        name: "PARKING 2",//second parking
         x: 325,
         y: 195
     },
     {
-        name: "PARKING", //second parking
+        name: "PARKING",
         x: 990,
         y: 550
     },
