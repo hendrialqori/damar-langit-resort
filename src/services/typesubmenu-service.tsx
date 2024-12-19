@@ -1,4 +1,4 @@
-import type { TypeSubMenu, Success, Error } from "../types";
+import type { TypeSubMenu, Success, Error } from "#/types";
 import axios from "axios"
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";

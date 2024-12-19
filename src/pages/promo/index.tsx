@@ -1,5 +1,5 @@
-import Layout from "../../components/layout";
-import { useGetPromos } from "../../services/promo-service";
+import Layout from "#/components/layout"
+import { useGetPromos } from "#/services/promo-service"
 
 export default function Promo() {
     const promosImage = useGetPromos()

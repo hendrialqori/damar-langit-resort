@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "#/components/layout";
 import { FaWhatsapp } from "react-icons/fa6";
 
 export default function ContactUs() {

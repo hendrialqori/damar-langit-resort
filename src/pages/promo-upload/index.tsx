@@ -1,9 +1,11 @@
-import SharedLayout from "../../components/shared-layout";
 import { useForm } from "react-hook-form"
 import { CgSpinner } from "react-icons/cg";
-import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query";
-import { useUploadPromo } from "../../services/promo-service";
+import { toast } from "sonner"
+
+import SharedLayout from "#/components/shared-layout";
+import { useUploadPromo } from "#/services/promo-service";
+
 
 type Form = {
     gambar: FileList;

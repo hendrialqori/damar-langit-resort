@@ -1,4 +1,4 @@
-import type { Promo, Success, Error } from "../types";
+import type { Promo, Success, Error } from "#/types";
 import axios from "axios"
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";

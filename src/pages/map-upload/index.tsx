@@ -1,11 +1,11 @@
-import SharedLayout from "../../components/shared-layout";
+import React from "react";
 import { useForm } from "react-hook-form"
 import { CgSpinner } from "react-icons/cg";
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query";
-import { LOCATIONS } from "../../constant";
-import { useUploadMapmage } from "../../services/map-service";
-import React from "react";
+import SharedLayout from "#/components/shared-layout";
+import { useUploadMapmage } from "#/services/map-service";
+import { LOCATIONS } from "#/constant";
 
 type Form = {
     gambar: FileList;

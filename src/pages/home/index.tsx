@@ -1,6 +1,6 @@
-import Hero from "../../components/content/hero";
-import Maps from "../../components/content/maps";
-import Layout from "../../components/layout";
+import Layout from "#/components/layout";
+import Hero from "./modules/hero";
+import Maps from "./modules/map";
 
 export default function Home() {
     return (

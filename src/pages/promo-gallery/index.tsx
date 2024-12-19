@@ -1,8 +1,11 @@
 import React from "react";
-import SharedLayout from "../../components/shared-layout";
 import { MdOutlineDelete } from "react-icons/md";
+
 import ModalDeleteImage from "./modules/modal-delete-image";
-import { useGetPromos } from "../../services/promo-service";
+import SharedLayout from "#/components/shared-layout";
+
+import { useGetPromos } from "#/services/promo-service";
+
 
 export default function PromoGallery() {
     const [id, setId] = React.useState<string | null>(null)
